@@ -2,6 +2,19 @@
 
 Ce projet implemente une solution de gestion immobiliere. L'architecture est modulaire (Domain-Driven Design) ou chaque domaine metier possede sa propre application Django dans le dossier `apps/`.
 
+## Mise a jour (26/03/2026) - Reservations et Baux
+
+- **Processus de Reservation complet** :
+  - Un locataire peut deposer une demande de reservation avec un message et des dates souhaitees.
+  - Le proprietaire peut accepter ou refuser la demande via son tableau de bord.
+  - L'acceptation d'une reservation change automatiquement le statut du bien en `RESERVE`.
+- **Creation automatique de Bail** :
+  - Redirection intelligente apres acceptation vers un formulaire de bail pre-rempli avec les donnees de la reservation (ID bien, ID locataire, loyer, dates).
+  - Validation du bail avec transition automatique du bien vers le statut `LOUE`.
+- **Audit et Logs** :
+  - Journalisation de chaque etape du cycle de vie de la reservation et du bail.
+  - Alertes automatiques envoyees aux parties concernees lors d'une mise a jour de statut.
+
 ## Mise a jour rapide (17/03/2026)
 
 - Core renforce : journal d'audit enrichi (severite, source, request id), alertes actionnables (priorite, URL d'action, metadata), scan operationnel, endpoints de marquage lu et marquage global.
